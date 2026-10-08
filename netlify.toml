@@ -1,6 +1,10 @@
 [build]
+  
+[build]
+  command = "mkdir -p public netlify/functions netlify/lib && cp index.html admin.html app.js admin.js styles.css shrine-original.png public/ && cp vote.mjs admin.mjs netlify/functions/ && cp common.mjs netlify/lib/"
   publish = "public"
   functions = "netlify/functions"
+
 
 [build.environment]
   NODE_VERSION = "22"
