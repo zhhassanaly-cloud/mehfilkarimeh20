@@ -21,7 +21,7 @@ function show(id) {
   window.scrollTo?.({top:0,behavior:'instant'});
 }
 function normalizeCode(value) {
-  return String(value || '').toUpperCase().replace(/[^A-Z2-9]/g,'');
+  return String(value || '').replace(/\D/g,'');
 }
 function message(element, text) { element.textContent=text; element.hidden=!text; }
 function select(choiceValue) {
@@ -34,7 +34,7 @@ $$('[data-back]').forEach(button => button.addEventListener('click',()=>show(but
 $('#code-form').addEventListener('submit',ev=>{
   ev.preventDefault();
   const normalized = normalizeCode($('#voting-code').value);
-  if(normalized.length !== 6) {message($('#code-error'),'Veuillez saisir le code personnel à 6 caractères reçu sur WhatsApp.');return;}
+  if(normalized.length !== 6) {message($('#code-error'),'Veuillez saisir le code personnel à 6 chiffres reçu sur WhatsApp.');return;}
   code=normalized;
   message($('#code-error'),'');
   show('ballot');

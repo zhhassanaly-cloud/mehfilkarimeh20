@@ -1,0 +1,7 @@
+GITHUB - REMPLACER 5 FICHIERS A LA RACINE DU DEPOT
+
+1. Ouvrir https://github.com/zhhassanaly-cloud/mehfilkarimeh20/upload/main
+2. Glisser UNIQUEMENT les 5 fichiers de ce dossier : index.html, app.js, admin.html, admin.js, vote.mjs
+3. NE PAS glisser de dossier prive, de code personnel, de .sql, de cle ou de fichier ZIP prive.
+4. Commit changes. Netlify deploiera automatiquement et conservera le netlify.toml existant.
+5. La version 8 exige aussi le nouveau SQL prive et la nouvelle variable CODE_PEPPER.

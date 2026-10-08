@@ -9,7 +9,7 @@ export default async (request, context) => {
     payload=await request.json();
   } catch {return json({error:'Requête invalide.'},400);}
   const normalized=sanitizeCode(payload?.code);
-  if (!/^[A-HJ-NP-Z2-9]{6}$/.test(normalized) || !['oui','non'].includes(payload?.choice))
+  if (!/^[0-9]{6}$/.test(normalized) || !['oui','non'].includes(payload?.choice))
     return json({error:'Vérifiez votre code et votre choix.'},400);
   try {
     const result=await rpc('cast_ballot', {

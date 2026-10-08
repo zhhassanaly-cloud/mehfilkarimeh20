@@ -36,8 +36,8 @@
         <p class="lead">Saisissez le code unique reçu sur WhatsApp pour accéder au vote.</p>
         <form id="code-form" novalidate>
           <label for="voting-code">CODE DE VOTE</label>
-          <input type="text" id="voting-code" name="voting-code" class="code-input" placeholder="EX. K7M-4P9" autocomplete="off" spellcheck="false" autocapitalize="characters" maxlength="7" required inputmode="text" aria-describedby="code-help">
-          <div id="code-help" class="helper">Code à 6 caractères (3 + 3). Chaque code ne peut servir qu’une seule fois.</div>
+          <input type="text" id="voting-code" name="voting-code" class="code-input" placeholder="EX. 482-719" autocomplete="off" spellcheck="false" autocapitalize="characters" maxlength="7" required inputmode="numeric" aria-describedby="code-help">
+          <div id="code-help" class="helper">Code à 6 chiffres (3 + 3). Chaque code ne peut servir qu’une seule fois.</div>
           <div class="error" id="code-error" role="alert" hidden></div>
           <button class="button primary" type="submit">Continuer <span aria-hidden="true">→</span></button>
         </form>
