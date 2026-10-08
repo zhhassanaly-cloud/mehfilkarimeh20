@@ -1,24 +1,10 @@
-[build]
-  
+
 [build]
   command = "mkdir -p public netlify/functions netlify/lib && cp index.html admin.html app.js admin.js styles.css shrine-original.png public/ && cp vote.mjs admin.mjs netlify/functions/ && cp common.mjs netlify/lib/"
   publish = "public"
-  functions = "netlify/functions"
 
+[functions]
+  directory = "netlify/functions"
 
 [build.environment]
   NODE_VERSION = "22"
-
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "no-referrer"
-    X-Frame-Options = "DENY"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'self'; upgrade-insecure-requests"
-
-[[headers]]
-  for = "/api/*"
-  [headers.values]
-    Cache-Control = "no-store, max-age=0"
