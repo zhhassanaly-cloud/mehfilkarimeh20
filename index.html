@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0e807e">
+  <meta name="description" content="Vote présidentiel de Mehfil-e-Karima — KSIJ Qom">
+  <title>Élection présidentielle — Mehfil-e-Karima</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script defer src="/app.js"></script>
+</head>
+<body>
+  <div class="backdrop" aria-hidden="true"></div>
+  <main class="shell" id="app">
+    <div class="top-stripe" aria-hidden="true"><span></span><span></span><span></span></div>
+    <header class="site-header">
+      <div class="branding"><img class="small-shrine" src="/shrine-original.png" alt=""><div><div class="brand-title">MEHFIL-E-KARIMA</div><div class="brand-sub">KSIJ QOM</div></div></div>
+      <div class="year-pill">2026</div>
+    </header>
+    <div class="content">
+      <div class="demo-chip" id="demo-chip" hidden>APERÇU — AUCUN VOTE RÉEL</div>
+      <div class="progress" id="progress" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+
+      <section class="screen active" id="welcome" aria-labelledby="welcome-title">
+        <div class="eyebrow">ÉLECTION PRÉSIDENTIELLE 2026</div>
+        <h1 id="welcome-title">Bienvenue à<br><em>Mehfil-e-Karima</em></h1>
+        <p class="lead">Vous êtes invité à participer à l’élection présidentielle de Mehfil-e-Karima.</p>
+        <div class="shrine-frame"><img src="/shrine-original.png" alt="Représentation du sanctuaire, avec deux minarets et un drapeau vert"></div>
+        <div class="candidate-panel"><span class="candidate-label">CANDIDAT</span><strong>Mourtouzaly Abidhoussen</strong></div>
+        <button class="button primary" data-next="code" type="button">Commencer <span aria-hidden="true">→</span></button>
+      </section>
+
+      <section class="screen" id="code" aria-labelledby="code-title">
+        <div class="eyebrow">ÉTAPE 1 SUR 3</div>
+        <h1 id="code-title">Votre code personnel</h1>
+        <p class="lead">Saisissez le code unique reçu sur WhatsApp pour accéder au vote.</p>
+        <form id="code-form" novalidate>
+          <label for="voting-code">CODE DE VOTE</label>
+          <input type="text" id="voting-code" name="voting-code" class="code-input" placeholder="EX. K7M-4P9" autocomplete="off" spellcheck="false" autocapitalize="characters" maxlength="7" required inputmode="text" aria-describedby="code-help">
+          <div id="code-help" class="helper">Code à 6 caractères (3 + 3). Chaque code ne peut servir qu’une seule fois.</div>
+          <div class="error" id="code-error" role="alert" hidden></div>
+          <button class="button primary" type="submit">Continuer <span aria-hidden="true">→</span></button>
+        </form>
+        <button class="plain-back" data-back="welcome" type="button">← Retour</button>
+      </section>
+
+      <section class="screen" id="ballot" aria-labelledby="ballot-title">
+        <div class="eyebrow">ÉTAPE 2 SUR 3</div>
+        <h1 id="ballot-title">Votre vote</h1>
+        <p class="lead">Approuvez-vous la candidature de <strong>Mourtouzaly Abidhoussen</strong> à la présidence de Mehfil-e-Karima ?</p>
+        <div class="ballot-options" role="radiogroup" aria-label="Votre choix">
+          <button class="choice" type="button" data-choice="oui" role="radio" aria-checked="false"><span class="choice-icon yes">✓</span><span>OUI</span><span class="choice-dot" aria-hidden="true"></span></button>
+          <button class="choice" type="button" data-choice="non" role="radio" aria-checked="false"><span class="choice-icon no">×</span><span>NON</span><span class="choice-dot" aria-hidden="true"></span></button>
+        </div>
+        <button class="button primary" id="review-button" disabled type="button">Vérifier mon choix <span aria-hidden="true">→</span></button>
+        <button class="plain-back" data-back="code" type="button">← Retour</button>
+      </section>
+
+      <section class="screen" id="review" aria-labelledby="review-title">
+        <div class="eyebrow">ÉTAPE 3 SUR 3</div>
+        <h1 id="review-title">Confirmez votre vote</h1>
+        <p class="lead">Vérifiez votre réponse avant de la valider définitivement.</p>
+        <div class="summary"><div class="summary-top">ÉLECTION PRÉSIDENTIELLE 2026</div><strong>Mourtouzaly Abidhoussen</strong><div class="summary-vote">Votre choix : <span id="review-choice"></span></div></div>
+        <p class="info-note">Après validation, votre code sera désactivé. Vous ne pourrez pas voter une seconde fois.</p>
+        <div class="error" id="submit-error" role="alert" hidden></div>
+        <button class="button primary" id="submit-vote" type="button">Confirmer mon vote <span aria-hidden="true">✓</span></button>
+        <button class="plain-back" data-back="ballot" type="button">← Modifier mon choix</button>
+      </section>
+
+      <section class="screen thank-you" id="thank-you" aria-labelledby="thank-title">
+        <div class="big-success" aria-hidden="true">✓</div>
+        <div class="eyebrow">PARTICIPATION TERMINÉE</div>
+        <h1 id="thank-title">Merci pour votre participation !</h1>
+        <p class="lead" id="thank-message">Votre vote a bien été enregistré.</p>
+        <div class="shrine-frame compact"><img src="/shrine-original.png" alt=""></div>
+        <div class="success-note">Votre code ne peut plus être utilisé.</div>
+        <p class="helper" id="thank-demo" hidden>Aucun vote n’a été réellement enregistré : il s’agit d’un aperçu.</p>
+      </section>
+      <footer class="page-footer">MEHFIL-E-KARIMA · KSIJ QOM</footer>
+    </div>
+  </main>
+</body>
+</html>

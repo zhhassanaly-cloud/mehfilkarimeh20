@@ -1,0 +1,12 @@
+{
+  "name": "mehfil-e-karima-election-v7",
+  "version": "7.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "codes:test": "node scripts/generate-codes.mjs 5",
+    "codes:real": "node scripts/generate-codes.mjs 50"
+  },
+  "engines": {"node": ">=20"}
+}
