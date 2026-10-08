@@ -31,6 +31,14 @@
     <button id="close" class="button primary" type="button" style="margin-top:18px">Clôturer définitivement le scrutin</button>
     <p class="info-note">Action irréversible : une confirmation sera demandée.</p>
    </div>
+   <div class="summary" style="margin-top:20px">
+     <strong>Vérifier un code sans voter</strong>
+     <p class="helper">Utile pour diagnostiquer les codes refusés. Cette opération ne consomme pas le code et ne compte aucun vote.</p>
+     <label for="diagnostic-code">CODE À VÉRIFIER</label>
+     <input id="diagnostic-code" class="code-input" maxlength="7" inputmode="numeric" autocomplete="off" placeholder="000-000" style="font-size:19px;letter-spacing:0.12em">
+     <button class="button primary" id="diagnostic-check" type="button">Vérifier sans voter</button>
+     <p id="diagnostic-result" class="info-note" role="status" aria-live="polite"></p>
+   </div>
    <p class="info-note">Les totaux ne contiennent ni nom, ni numéro WhatsApp, ni vote lié à un code.</p>
   </section>
  </div>

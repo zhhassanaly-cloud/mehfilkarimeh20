@@ -41,3 +41,24 @@ byId('close').addEventListener('click',async()=>{
   try {render(await request('close',{confirm:'FERMER'}));}
   catch(e) {byId('status').textContent=e.message;}
 });
+
+// Lecture seule : vérifie si le code correspond à un digest Supabase, sans le consommer.
+byId('diagnostic-check').addEventListener('click', async () => {
+  const button = byId('diagnostic-check');
+  const output = byId('diagnostic-result');
+  const clean = byId('diagnostic-code').value.replace(/\D/g, '');
+  if (clean.length !== 6) { output.textContent = 'Saisissez un code à 6 chiffres.'; return; }
+  button.disabled = true;
+  output.textContent = 'Vérification en cours…';
+  try {
+    const result = await request('check_code', { code: clean });
+    if (result.result === 'ready') {
+      output.textContent = '✓ Code reconnu et encore disponible. Le serveur utilise la bonne clé de codes.';
+    } else if (result.result === 'used') {
+      output.textContent = 'Code reconnu, mais déjà utilisé. Il ne peut plus voter.';
+    } else {
+      output.textContent = '✕ Code non reconnu. Vérifiez que le SQL des 50 codes a été exécuté et que CODE_PEPPER correspond au fichier privé Version 8.';
+    }
+  } catch (e) { output.textContent = 'Diagnostic impossible : ' + (e.message || 'erreur du serveur'); }
+  finally { button.disabled = false; byId('diagnostic-code').value = ''; }
+});

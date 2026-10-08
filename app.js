@@ -7,6 +7,7 @@ let code = '';
 let choice = null;
 let finished = false;
 let submitting = false;
+let personalizedLink = false;
 const $ = (q) => document.querySelector(q);
 const $$ = (q) => [...document.querySelectorAll(q)];
 const sequence = ['welcome','code','ballot','review','thank-you'];
@@ -31,6 +32,27 @@ function select(choiceValue) {
 }
 $$('[data-next]').forEach(button => button.addEventListener('click',()=>show(button.dataset.next)));
 $$('[data-back]').forEach(button => button.addEventListener('click',()=>show(button.dataset.back)));
+// Personalized invitations use a fragment (#code=...) rather than a query parameter.
+// Fragments are not sent to Netlify in the HTTP request. Remove it from the address
+// immediately after parsing; never store the credential in localStorage.
+function loadPersonalInvitation() {
+  const fragment = window.location.hash.slice(1);
+  if (!fragment) return;
+  let submitted = '';
+  try { submitted = new URLSearchParams(fragment).get('code') || ''; } catch { /* ignore */ }
+  try { window.history.replaceState(null, '', window.location.pathname); } catch { /* ignore */ }
+  const normalized = normalizeCode(submitted);
+  if (!/^\d{3}-?\d{3}$/.test(submitted) || normalized.length !== 6) return;
+  code = normalized;
+  personalizedLink = true;
+  $('#voting-code').value = code.slice(0,3) + '-' + code.slice(3);
+  const welcomeButton = $('#welcome [data-next]');
+  welcomeButton.dataset.next = 'ballot';
+  welcomeButton.innerHTML = 'Accéder à mon vote <span aria-hidden="true">→</span>';
+  const label = $('#invitation-label');
+  if (label) label.hidden = false;
+}
+
 $('#code-form').addEventListener('submit',ev=>{
   ev.preventDefault();
   const normalized = normalizeCode($('#voting-code').value);
@@ -92,4 +114,5 @@ if(DEMO_MODE){
     $('#thank-demo').hidden=false;
   }
 }
+loadPersonalInvitation();
 show(finished?'thank-you':'welcome');
